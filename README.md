@@ -165,34 +165,42 @@ df = pandas.read_csv()
 
 Quel est le type de l'objet `df`?
 ```
-
+Il s'agit d'un DataFrame
 ```
 
 ##### Descriptions d'une table de données
 Que permettent les méthodes suivantes?
 ###### df.shape
 ```
+taille de DataFrame (colonnes X lignes)
 ```
 ###### df.head()
 ```
+affiche les 5 premières lignes du DataFrame
 ```
 ###### df.tail()
 ```
+affiche les 5 dernières lignes du DataFrame
 ```
 ###### df.columns
 ```
+affiche la listes des noms de colonnes du DataFrame
 ```
 ###### df.dtypes
 ```
+affiche le types de chaque colonne du DataFrame
 ```
 ###### df.info
 ```
+affiche plusieurs infos sur le DataFrame comme sa taile, et le type des colonnes
 ```
 ###### df.describe()
 ```
+affiche la moyenne, mediane, quartile, et autre données stats pour chaque colonnes
 ```
 ###### df.dropna()
 ```
+supprime les colonnes contenant des NaN
 ```
 
 ##### Accès aux éléments d'une table de données
@@ -203,6 +211,12 @@ values = df[['Description', 'Gene Symbol']]
 
 Quel est le type de `values` ?
 
+```
+Values est un DataFrame
+```
+
+
+
 Verifiez si certaines méthodes de `DataFrame` lui sont applicables.
 Ce type supporte l'accès par indice et les slice `[a:b]`
 
@@ -212,17 +226,17 @@ On peut accéder aux valeurs du DataFrame via des indices ou plages d'indice. La
 Il y a différentes manières de le faire, l'utilisation de `.iloc[slice_ligne,slice_colonne]` constitue une des solutions les plus simples. N'oublions pas que shape permet d'obtenir les dimensions (lignes et colonnes) du DataFrame.
 ###### Acceder aux cinq premières lignes de toutes les colonnes
 ```python
-
+df.iloc[:5]
 ```
 
 ###### Acceder à toutes les lignes de la dernière colonne
 ```python
-
+df.iloc[:,-1]
 ```
 
 ###### Acceder aux cinq premières lignes des colonnes 0, 2 et 3
 ```python
-
+df.iloc[:5,[0,2,3]]
 ```
 
 ##### Conversion de type
@@ -272,8 +286,7 @@ df.loc[ df['Gene Symbol'].isin(['fadR', 'arcA'] ) ]
 
 ##### 3. A partir de cette échantillon de ratio d'abondance,  estimez la moyenne <img src="https://render.githubusercontent.com/render/math?math=\mu"> et l'ecart-type <img src="https://render.githubusercontent.com/render/math?math=\sigma"> d'une loi normale.
 ```
-
-
+d'apres norm.fit() on a mu = -0.64 et sigma = 0.47
 ```
 
 ##### 4. Superposez la densité de probabilité de cette loi sur l'histogramme. Attention, la densité de probabilité devra être mis à l'echelle de l'histogramme (cf ci-dessous)
@@ -289,12 +302,14 @@ scale = len(_)*dx # scale accordingly
 ax.plot(x, norm.pdf(x, mu, sigma)*scale) # compute theoritical PDF and draw it
 ```
 
-![Histogramme à inserez ici](histogram_log2FC.png "Title")
+![Histograme](data/histogram_log2FC.png "data/histogram_log2FC.png")
+
+histogram_log2FC
 
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de la loi théorique?
 
 ```
-
+Elles ne fittent pas bien, les données réelles ne ressemble pas vraiment à une loi normale.
 
 ```
 
@@ -308,7 +323,7 @@ Sont condidérées comme surabondantes les proteines remplissant ces deux critè
 * <img src="https://render.githubusercontent.com/render/math?math=\text{Log}_2(\text{abundance ratio})\gt\mu%2B\sigma">  
 * <img src="https://render.githubusercontent.com/render/math?math=\text{p-value}<0.001">
 
-![Volcano plot + quadrant à inserez ici](histogram_log2FC.png "Title")
+![Volcano plot](data/volcano_plot.png "Title")
 
 ### Analyse Fonctionelle de pathway
 
@@ -418,5 +433,4 @@ Analysez le réseau des interactions connues entre ces protéines.
 
 
 ```
-
 
